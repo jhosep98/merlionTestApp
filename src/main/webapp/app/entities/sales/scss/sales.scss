@@ -1,0 +1,21 @@
+.sales-heading {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  text-transform: uppercase;
+}
+
+.contentKey {
+  text-transform: uppercase;
+}
+
+.btn-group {
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.button-group {
+  span {
+    margin-left: 3px;
+  }
+}
