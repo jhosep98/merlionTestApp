@@ -1,41 +1,44 @@
-import "./index.scss"
+import "./index.scss";
 
-import React, { useState, useEffect } from 'react';
-import { connect } from 'react-redux';
-import { Link, RouteComponentProps } from 'react-router-dom';
-import { Button,Col, Row, Table } from 'reactstrap';
-import { Translate, ICrudGetAllAction, TextFormat } from 'react-jhipster';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import React, { useState, useEffect } from "react";
+import { connect } from "react-redux";
+import { Link, RouteComponentProps } from "react-router-dom";
+import { Button, Col, Row, Table } from "reactstrap";
+import { Translate, ICrudGetAllAction, TextFormat } from "react-jhipster";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-import { IRootState } from 'app/shared/reducers';
-import { getEntities } from './sales.reducer';
-import { ISales } from 'app/shared/model/sales.model';
-import { APP_DATE_FORMAT, APP_LOCAL_DATE_FORMAT } from 'app/config/constants';
+import { IRootState } from "app/shared/reducers";
+import { getEntities } from "./sales.reducer";
+import { ISales } from "app/shared/model/sales.model";
+import { APP_DATE_FORMAT, APP_LOCAL_DATE_FORMAT } from "app/config/constants";
 
 // Components material-ui
-import CustomButton from '@material-ui/core/Button';
+import CustomButton from "@material-ui/core/Button";
 
 const style = {
-  backgroundColor: '#2a6a9e',
-  color: '#fff',
+  backgroundColor: "#2a6a9e",
+  color: "#fff",
 };
 
 const view = {
-  backgroundColor: '#00b0b9',
-  color: '#fff',
-}
+  backgroundColor: "#00b0b9",
+  color: "#fff",
+};
 
 const edit = {
-  backgroundColor: '#008eb8',
-  color: '#fff',
-}
+  backgroundColor: "#008eb8",
+  color: "#fff",
+};
 
 const Delete = {
-  backgroundColor: '#fd6060',
-  color: '#fff',
-}
+  backgroundColor: "#fd6060",
+  color: "#fff",
+};
 
-export interface ISalesProps extends StateProps, DispatchProps, RouteComponentProps<{ url: string }> {}
+export interface ISalesProps
+  extends StateProps,
+    DispatchProps,
+    RouteComponentProps<{ url: string }> {}
 
 export const Sales = (props: ISalesProps) => {
   useEffect(() => {
@@ -50,8 +53,10 @@ export const Sales = (props: ISalesProps) => {
         <Link to={`${match.url}/new`} id="jh-create-entity">
           <CustomButton style={style}>
             <FontAwesomeIcon icon="plus" />
-              &nbsp;
-            <Translate contentKey="testApp.sales.home.createLabel">Create new Sales</Translate>
+            &nbsp;
+            <Translate contentKey="testApp.sales.home.createLabel">
+              Create new Sales
+            </Translate>
           </CustomButton>
         </Link>
       </h2>
@@ -64,7 +69,9 @@ export const Sales = (props: ISalesProps) => {
                   <Translate contentKey="global.field.id">ID</Translate>
                 </th>
                 <th>
-                  <Translate contentKey="testApp.sales.description">Description</Translate>
+                  <Translate contentKey="testApp.sales.description">
+                    Description
+                  </Translate>
                 </th>
                 <th>
                   <Translate contentKey="testApp.sales.state">State</Translate>
@@ -79,7 +86,12 @@ export const Sales = (props: ISalesProps) => {
               {salesList.map((sales, i) => (
                 <tr key={`entity-${i}`}>
                   <td>
-                    <Button tag={Link} to={`${match.url}/${sales.id}`} color="link" size="sm">
+                    <Button
+                      tag={Link}
+                      to={`${match.url}/${sales.id}`}
+                      color="link"
+                      size="sm"
+                    >
                       {sales.id}
                     </Button>
                   </td>
@@ -87,34 +99,60 @@ export const Sales = (props: ISalesProps) => {
                   <td>
                     <Translate contentKey={`testApp.State.${sales.state}`} />
                   </td>
-                  <td>{sales.date ? <TextFormat type="date" value={sales.date} format={APP_LOCAL_DATE_FORMAT} /> : null}</td>
+                  <td>
+                    {sales.date ? (
+                      <TextFormat
+                        type="date"
+                        value={sales.date}
+                        format={APP_LOCAL_DATE_FORMAT}
+                      />
+                    ) : null}
+                  </td>
                   <td className="text-right">
                     <div className="btn-group flex-btn-group-container">
-                      <Button tag={Link} to={`${match.url}/${sales.id}`} className="button-none-styles">
+                      <Button
+                        tag={Link}
+                        to={`${match.url}/${sales.id}`}
+                        className="button-none-styles"
+                      >
                         <CustomButton style={view} className="button-group">
-                          <FontAwesomeIcon icon="eye" />{' '}
-                             <span className="d-none d-md-inline">
-                                <Translate contentKey="entity.action.view">View</Translate>
-                            </span>
+                          <FontAwesomeIcon icon="eye" />{" "}
+                          <span className="d-none d-md-inline">
+                            <Translate contentKey="entity.action.view">
+                              View
+                            </Translate>
+                          </span>
                         </CustomButton>
                       </Button>
-                      <Button tag={Link} to={`${match.url}/${sales.id}/edit`} className="button-none-styles">
+                      <Button
+                        tag={Link}
+                        to={`${match.url}/${sales.id}/edit`}
+                        className="button-none-styles"
+                      >
                         <CustomButton style={edit} className="button-group">
-                            <FontAwesomeIcon icon="pencil-alt" />{' '}
-                              <span className="d-none d-md-inline">
-                                <Translate contentKey="entity.action.edit">Edit</Translate>
-                              </span>
+                          <FontAwesomeIcon icon="pencil-alt" />{" "}
+                          <span className="d-none d-md-inline">
+                            <Translate contentKey="entity.action.edit">
+                              Edit
+                            </Translate>
+                          </span>
                         </CustomButton>
                       </Button>
-                      <Button tag={Link} to={`${match.url}/${sales.id}/delete`} className="button-none-styles">
+                      <Button
+                        tag={Link}
+                        to={`${match.url}/${sales.id}/delete`}
+                        className="button-none-styles"
+                      >
                         <CustomButton style={Delete} className="button-group">
-                            <FontAwesomeIcon icon="trash" />{' '}
-                              <span className="d-none d-md-inline">
-                                <Translate contentKey="entity.action.delete">Delete</Translate>
-                              </span>
+                          <FontAwesomeIcon icon="trash" />{" "}
+                          <span className="d-none d-md-inline">
+                            <Translate contentKey="entity.action.delete">
+                              Delete
+                            </Translate>
+                          </span>
                         </CustomButton>
                       </Button>
-                    </div>  
+                    </div>
                   </td>
                 </tr>
               ))}
@@ -123,7 +161,9 @@ export const Sales = (props: ISalesProps) => {
         ) : (
           !loading && (
             <div className="alert alert-warning">
-              <Translate contentKey="testApp.sales.home.notFound">No Sales found</Translate>
+              <Translate contentKey="testApp.sales.home.notFound">
+                No Sales found
+              </Translate>
             </div>
           )
         )}
