@@ -1,4 +1,4 @@
-import "./scss/sales-update.scss";
+import "./index.scss";
 
 import React, { useState, useEffect } from "react";
 import { connect } from "react-redux";

@@ -1,0 +1,22 @@
+.container-details {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  h2 {
+    text-transform: uppercase;
+    margin-bottom: 0.7rem;
+    font-weight: bold;
+    color: #2a6a9e;
+    text-align: center;
+  }
+  .content-key {
+    text-transform: uppercase;
+    font-weight: 600;
+  }
+  dd {
+    text-transform: capitalize;
+  }
+}
+.d-none {
+  margin-left: 0.5rem;
+}
