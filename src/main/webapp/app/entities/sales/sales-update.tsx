@@ -1,26 +1,65 @@
-import React, { useState, useEffect } from 'react';
-import { connect } from 'react-redux';
-import { Link, RouteComponentProps } from 'react-router-dom';
-import { Button, Row, Col, Label } from 'reactstrap';
-import { AvFeedback, AvForm, AvGroup, AvInput, AvField } from 'availity-reactstrap-validation';
-import { Translate, translate, ICrudGetAction, ICrudGetAllAction, ICrudPutAction } from 'react-jhipster';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { IRootState } from 'app/shared/reducers';
+import "./scss/sales-update.scss";
 
-import { getEntity, updateEntity, createEntity, reset } from './sales.reducer';
-import { ISales } from 'app/shared/model/sales.model';
-import { convertDateTimeFromServer, convertDateTimeToServer, displayDefaultDateTime } from 'app/shared/util/date-utils';
-import { mapIdList } from 'app/shared/util/entity-utils';
+import React, { useState, useEffect } from "react";
+import { connect } from "react-redux";
+import { Link, RouteComponentProps } from "react-router-dom";
+import { Button, Row, Col, Label } from "reactstrap";
+import {
+  AvFeedback,
+  AvForm,
+  AvGroup,
+  AvInput,
+  AvField,
+} from "availity-reactstrap-validation";
+import {
+  Translate,
+  translate,
+  ICrudGetAction,
+  ICrudGetAllAction,
+  ICrudPutAction,
+} from "react-jhipster";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { IRootState } from "app/shared/reducers";
 
-export interface ISalesUpdateProps extends StateProps, DispatchProps, RouteComponentProps<{ id: string }> {}
+import { getEntity, updateEntity, createEntity, reset } from "./sales.reducer";
+import { ISales } from "app/shared/model/sales.model";
+import {
+  convertDateTimeFromServer,
+  convertDateTimeToServer,
+  displayDefaultDateTime,
+} from "app/shared/util/date-utils";
+import { mapIdList } from "app/shared/util/entity-utils";
+
+// Components material-ui
+import CustomButton from "@material-ui/core/Button";
+import TextField from "@material-ui/core/TextField";
+import Select from "@material-ui/core/Select";
+import MenuItem from "@material-ui/core/MenuItem";
+
+const back = {
+  backgroundColor: "#00b0b9",
+  color: "#fff",
+};
+
+const save = {
+  backgroundColor: "#008eb8",
+  color: "#fff",
+};
+
+export interface ISalesUpdateProps
+  extends StateProps,
+    DispatchProps,
+    RouteComponentProps<{ id: string }> {}
 
 export const SalesUpdate = (props: ISalesUpdateProps) => {
-  const [isNew, setIsNew] = useState(!props.match.params || !props.match.params.id);
+  const [isNew, setIsNew] = useState(
+    !props.match.params || !props.match.params.id
+  );
 
   const { salesEntity, loading, updating } = props;
 
   const handleClose = () => {
-    props.history.push('/sales');
+    props.history.push("/sales");
   };
 
   useEffect(() => {
@@ -56,8 +95,10 @@ export const SalesUpdate = (props: ISalesUpdateProps) => {
     <div>
       <Row className="justify-content-center">
         <Col md="8">
-          <h2 id="testApp.sales.home.createOrEditLabel">
-            <Translate contentKey="testApp.sales.home.createOrEditLabel">Create or edit a Sales</Translate>
+          <h2 id="testApp.sales.home.createOrEditLabel" className="tile-edit">
+            <Translate contentKey="testApp.sales.home.createOrEditLabel">
+              Create or edit a Sales
+            </Translate>
           </h2>
         </Col>
       </Row>
@@ -72,50 +113,91 @@ export const SalesUpdate = (props: ISalesUpdateProps) => {
                   <Label for="sales-id">
                     <Translate contentKey="global.field.id">ID</Translate>
                   </Label>
-                  <AvInput id="sales-id" type="text" className="form-control" name="id" required readOnly />
+                  <AvInput
+                    id="sales-id"
+                    type="text"
+                    className="form-control"
+                    name="id"
+                    required
+                    readOnly
+                  />
                 </AvGroup>
               ) : null}
-              <AvGroup>
+              <AvGroup className="container-texField">
                 <Label id="descriptionLabel" for="sales-description">
-                  <Translate contentKey="testApp.sales.description">Description</Translate>
+                  <Translate contentKey="testApp.sales.description">
+                    Description
+                  </Translate>
                 </Label>
-                <AvField id="sales-description" type="text" name="description" />
+                <TextField
+                  id="sales-description"
+                  type="text"
+                  name="description"
+                  placeholder="Enter your description"  
+                  variant="standard"
+                  fullWidth
+                />
               </AvGroup>
-              <AvGroup>
+              <AvGroup className="container-texField">
                 <Label id="stateLabel" for="sales-state">
                   <Translate contentKey="testApp.sales.state">State</Translate>
                 </Label>
-                <AvInput
+                <Select
                   id="sales-state"
-                  type="select"
-                  className="form-control"
+                  fullWidth
                   name="state"
-                  value={(!isNew && salesEntity.state) || 'IN_CHARGE'}
+                  value={(!isNew && salesEntity.state) || "IN_CHARGE"}
                 >
-                  <option value="IN_CHARGE">{translate('testApp.State.IN_CHARGE')}</option>
-                  <option value="SHIPPED">{translate('testApp.State.SHIPPED')}</option>
-                  <option value="DELIVERED">{translate('testApp.State.DELIVERED')}</option>
-                </AvInput>
+                  <MenuItem value="IN_CHARGE">
+                    {translate("testApp.State.IN_CHARGE")}
+                  </MenuItem>
+                  <MenuItem value="SHIPPED">
+                    {translate("testApp.State.SHIPPED")}
+                  </MenuItem>
+                  <MenuItem value="DELIVERED">
+                    {translate("testApp.State.DELIVERED")}
+                  </MenuItem>
+                </Select>
               </AvGroup>
-              <AvGroup>
+              <AvGroup className="container-texField">
                 <Label id="dateLabel" for="sales-date">
                   <Translate contentKey="testApp.sales.date">Date</Translate>
                 </Label>
-                <AvField id="sales-date" type="date" className="form-control" name="date" />
+                <TextField id="sales-date" type="date" name="date" fullWidth />
               </AvGroup>
-              <Button tag={Link} id="cancel-save" to="/sales" replace color="info">
-                <FontAwesomeIcon icon="arrow-left" />
-                &nbsp;
-                <span className="d-none d-md-inline">
-                  <Translate contentKey="entity.action.back">Back</Translate>
-                </span>
-              </Button>
-              &nbsp;
-              <Button color="primary" id="save-entity" type="submit" disabled={updating}>
-                <FontAwesomeIcon icon="save" />
-                &nbsp;
-                <Translate contentKey="entity.action.save">Save</Translate>
-              </Button>
+              <div className="group-buttons">
+                <div>
+                  <Button tag={Link} id="cancel-save" to="/sales" replace className="button-none-styles">
+                    <CustomButton style={back}>
+                      <FontAwesomeIcon icon="arrow-left" />
+                      &nbsp;
+                      <span className="d-none d-md-inline">
+                        <Translate contentKey="entity.action.back">
+                          Back
+                        </Translate>
+                      </span>
+                    </CustomButton>
+                  </Button>
+                </div>
+                <div>
+                  <Button className="button-none-styles">
+                    <CustomButton
+                      style={save}
+                      id="save-entity"
+                      type="submit"
+                      disabled={updating}
+                    >
+                      <FontAwesomeIcon icon="save" />
+                      &nbsp;
+                      <span>
+                        <Translate contentKey="entity.action.save">
+                          Save
+                        </Translate>
+                      </span>
+                    </CustomButton>
+                  </Button>
+                </div>
+              </div>
             </AvForm>
           )}
         </Col>

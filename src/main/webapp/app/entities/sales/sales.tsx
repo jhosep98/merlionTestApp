@@ -90,30 +90,30 @@ export const Sales = (props: ISalesProps) => {
                   <td>{sales.date ? <TextFormat type="date" value={sales.date} format={APP_LOCAL_DATE_FORMAT} /> : null}</td>
                   <td className="text-right">
                     <div className="btn-group flex-btn-group-container">
-                      <Link tag={Link} to={`${match.url}/${sales.id}`}>
+                      <Button tag={Link} to={`${match.url}/${sales.id}`} className="button-none-styles">
                         <CustomButton style={view} className="button-group">
                           <FontAwesomeIcon icon="eye" />{' '}
                              <span className="d-none d-md-inline">
                                 <Translate contentKey="entity.action.view">View</Translate>
                             </span>
                         </CustomButton>
-                      </Link>
-                      <Link tag={Link} to={`${match.url}/${sales.id}/edit`}>
+                      </Button>
+                      <Button tag={Link} to={`${match.url}/${sales.id}/edit`} className="button-none-styles">
                         <CustomButton style={edit} className="button-group">
                             <FontAwesomeIcon icon="pencil-alt" />{' '}
                               <span className="d-none d-md-inline">
                                 <Translate contentKey="entity.action.edit">Edit</Translate>
                               </span>
                         </CustomButton>
-                      </Link>
-                      <Link tag={Link} to={`${match.url}/${sales.id}/delete`}>
+                      </Button>
+                      <Button tag={Link} to={`${match.url}/${sales.id}/delete`} className="button-none-styles">
                         <CustomButton style={Delete} className="button-group">
                             <FontAwesomeIcon icon="trash" />{' '}
                               <span className="d-none d-md-inline">
                                 <Translate contentKey="entity.action.delete">Delete</Translate>
                               </span>
                         </CustomButton>
-                      </Link>
+                      </Button>
                     </div>  
                   </td>
                 </tr>

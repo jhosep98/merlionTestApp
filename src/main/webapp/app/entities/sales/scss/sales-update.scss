@@ -1,0 +1,24 @@
+.group-buttons {
+  width: 100%;
+  display: flex;
+  justify-content: flex-start;
+  div {
+    padding-right: 0.4rem;
+  }
+}
+.button-none-styles {
+  background-color: #fff;
+  border: none;
+  padding-left: 0;
+  &:hover {
+    background-color: #fff;
+  }
+  &:active {
+    background-color: #fff !important;
+    border: none !important;
+  }
+}
+.tile-edit {
+  text-transform: uppercase;
+  text-align: center;
+}
