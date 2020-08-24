@@ -49,8 +49,11 @@ export const Sales = (props: ISalesProps) => {
   return (
     <div>
       <h2 id="sales-heading" className="sales-heading">
-        <Translate contentKey="testApp.sales.home.title">Sales</Translate>
-        <Link to={`${match.url}/new`} id="jh-create-entity">
+        <div>
+          <Translate contentKey="testApp.sales.home.title">Sales</Translate>
+        </div>
+        <div>
+          <Link to={`${match.url}/new`} id="jh-create-entity">
           <CustomButton style={style}>
             <FontAwesomeIcon icon="plus" />
             &nbsp;
@@ -59,6 +62,7 @@ export const Sales = (props: ISalesProps) => {
             </Translate>
           </CustomButton>
         </Link>
+        </div>
       </h2>
       <div className="table-responsive">
         {salesList && salesList.length > 0 ? (

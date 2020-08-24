@@ -5,7 +5,11 @@ body {
   background: #fafafa;
   margin: 0;
 }
-
+#root {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
 a {
   color: #533f03;
   font-weight: bold;
@@ -23,8 +27,9 @@ a {
 
 .app-container {
   box-sizing: border-box;
+  margin-top: 3rem;
   .view-container {
-    width: 100%;
+    width: 70%;
     height: calc(100% - 40px);
     overflow-y: auto;
     overflow-x: hidden;

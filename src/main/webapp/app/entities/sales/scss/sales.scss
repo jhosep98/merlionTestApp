@@ -3,6 +3,11 @@
   display: flex;
   justify-content: space-between;
   text-transform: uppercase;
+
+  @media screen and (max-width: 480px) {
+    flex-direction: column;
+    text-align: center;
+  }
 }
 
 .contentKey {
